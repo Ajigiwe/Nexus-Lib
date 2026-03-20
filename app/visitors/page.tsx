@@ -629,7 +629,7 @@ function VisitorsPageContent() {
         </div>
 
         {/* Add Visit */}
-        <Card className="bg-white border border-slate-200 shadow-none overflow-hidden">
+        <Card className="bg-white border border-slate-200 shadow-none">
           <CardHeader className="border-b border-slate-100 bg-white pb-6">
             <CardTitle className="text-slate-900 font-black text-xl tracking-tight flex items-center gap-2">
               <UserPlus className="h-6 w-6 text-blue-600" />
