@@ -268,73 +268,7 @@ function DashboardContent() {
               </Card>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-8">
-              {/* Recent Assets Card */}
-              <Card className="bg-white border border-slate-200 shadow-none overflow-hidden rounded-xl">
-                <CardHeader className="border-b border-slate-100 flex flex-row items-center justify-between py-5 bg-white">
-                  <div>
-                    <CardTitle className="text-slate-900 font-black text-xl tracking-tight">Recent Books</CardTitle>
-                    <CardDescription className="text-slate-600 text-xs font-bold tracking-tight">Latest items added to catalog</CardDescription>
-                  </div>
-                  <BookOpen className="h-6 w-6 text-blue-600 opacity-20" />
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="divide-y divide-slate-100">
-                    {books.slice(0, 5).map(book => (
-                      <div key={book.id} className="p-4 hover:bg-white border hover:border-blue-200 transition-colors shadow-none">
-                        <div className="flex items-center gap-4">
-                          <div className="h-10 w-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-400 font-black text-xs border border-blue-100">BOOK</div>
-                          <div className="flex flex-col">
-                            <span className="font-extrabold text-slate-900 text-sm line-clamp-1">{book.title}</span>
-                            <span className="text-xs text-slate-500 font-bold tracking-tight">ISBN: {book.isbn}</span>
-                          </div>
-                        </div>
-                        <Badge className="bg-blue-50 text-blue-600 border-blue-100 text-xs font-black px-2.5 py-1 shadow-none">{book.availableCopies} CP</Badge>
-                      </div>
-                    ))}
-                  </div>
-                  <Link href="/books">
-                    <Button variant="ghost" className="w-full h-12 rounded-none bg-white hover:bg-white border-t border-slate-100 hover:border-blue-200 transition-colors shadow-none flex items-center justify-center font-black">
-                      View All Books <TrendingUp className="h-4 w-4 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
 
-              {/* Recent Entities Card */}
-              <Card className="bg-white border border-slate-200 shadow-none overflow-hidden rounded-xl">
-                <CardHeader className="border-b border-slate-100 flex flex-row items-center justify-between py-5 bg-white">
-                  <div>
-                    <CardTitle className="text-slate-900 font-black text-xl tracking-tight">New Members</CardTitle>
-                    <CardDescription className="text-slate-600 text-xs font-bold tracking-tight">Latest registrations in past month</CardDescription>
-                  </div>
-                  <UserCheck className="h-6 w-6 text-emerald-600 opacity-20" />
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="divide-y divide-slate-100">
-                    {members.slice(0, 5).map(member => (
-                      <div key={member.id} className="p-3 hover:bg-white border hover:border-blue-200 transition-colors shadow-none">
-                        <div className="flex items-center gap-4">
-                          <div className="h-10 w-10 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 font-black text-xs border border-emerald-100 text-center">
-                            {member.firstName[0]}{member.lastName[0]}
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="font-extrabold text-slate-900 text-sm leading-tight">{member.firstName} {member.lastName}</span>
-                            <span className="text-xs text-slate-500 font-bold">ID: {member.membershipId}</span>
-                          </div>
-                        </div>
-                        <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 text-xs font-black shadow-none">Active</Badge>
-                      </div>
-                    ))}
-                  </div>
-                  <Link href="/members">
-                    <Button variant="ghost" className="w-full h-12 rounded-none bg-white hover:bg-white border-t border-slate-100 hover:border-blue-200 transition-colors shadow-none flex items-center justify-center font-black">
-                      View All Members <Users className="h-4 w-4 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-        </div>
       </DashboardLayout>
     </div>
   )
