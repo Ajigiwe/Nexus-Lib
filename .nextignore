@@ -1,0 +1,12 @@
+# Exclude heavy, non-source directories from Next.js dev file watching
+# This reduces memory usage during development
+
+dist/
+dist.bak/
+electron/
+out/
+coverage/
+**/*.exe
+**/*.dll
+**/*.bin
+**/*.pak

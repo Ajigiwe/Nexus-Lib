@@ -1,0 +1,79 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Disable all non-essential features
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+  
+  // Disable all possible optimizations
+  productionBrowserSourceMaps: false,
+  reactStrictMode: false,
+  compress: false,
+  poweredByHeader: false,
+  generateEtags: false,
+  swcMinify: false,
+  
+  // Disable image optimization
+  images: {
+    unoptimized: true,
+    disableStaticImages: true,
+  },
+  
+  // Disable static optimization
+  output: 'standalone',
+  
+  // Disable CSS and font optimization
+  optimizeFonts: false,
+  
+  // Disable source maps
+  webpack: (config, { dev, isServer }) => {
+    // Disable source maps
+    config.devtool = false;
+    
+    // Disable parallel processing
+    config.parallelism = 1;
+    
+    // Disable file system watching
+    config.watch = false;
+    
+    // Disable optimizations
+    if (config.optimization) {
+      config.optimization.minimize = false;
+      config.optimization.removeAvailableModules = false;
+      config.optimization.removeEmptyChunks = false;
+      config.optimization.splitChunks = false;
+      config.optimization.usedExports = false;
+      config.optimization.sideEffects = false;
+    }
+    
+    // Handle externals properly for Electron build
+    if (!isServer) {
+      config.externals = [
+        ...(Array.isArray(config.externals) ? config.externals : []),
+        {
+          'bufferutil': 'bufferutil',
+          'utf-8-validate': 'utf-8-validate',
+        }
+      ];
+    }
+    
+    // Ignore node modules and build artifacts
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: [
+        '**/node_modules/**',
+        '**/.next/**',
+        '**/dist/**',
+        '**/win-unpacked/**',
+        '**/public/**',
+        '**/coverage/**',
+        '**/test/**',
+        '**/tests/**',
+        '**/__tests__/**',
+      ],
+    };
+    
+    return config;
+  },
+};
+
+export default nextConfig;
